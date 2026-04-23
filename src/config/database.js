@@ -9,5 +9,6 @@ async function connectDB(){
 
     }
 }
+//use this function in server.js to connect to the database before starting the server
 
 module.exports = connectDB;
