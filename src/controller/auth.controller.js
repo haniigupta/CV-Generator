@@ -31,6 +31,22 @@ async function registerUserController(req, res) {
         email,
         password: hash
     });
+    const token = jwt.sign(
+        {id: userModel._id, username: userModel.username},
+        process.env.JWT_SECRET,
+        {expiresIn: '1d'}
+    )
+    res.cookie('token', token);
+
+    res.status(201).json({
+        message: 'User registered successfully', 
+        user: {
+            id: newUser._id,
+            username: newUser.username,
+            email: newUser.email
+        },
+    
+    }); 
 
     
 }
